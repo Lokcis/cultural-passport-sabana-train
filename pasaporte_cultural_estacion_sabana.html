@@ -1,0 +1,350 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=IM+Fell+English&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{display:flex;flex-direction:column;gap:32px;padding:16px 0}
+.screen-label{font-size:10px;letter-spacing:1.5px;color:var(--color-text-secondary);text-transform:uppercase;margin-bottom:10px;padding-left:2px}
+.phone{width:340px;margin:0 auto;background:#f5f0e8;border:1px solid #c8b89a;border-radius:6px;overflow:hidden;font-family:'Playfair Display',serif}
+.sb{background:#2c1a0e;color:#c8a96e;padding:7px 14px;font-size:10px;display:flex;justify-content:space-between;letter-spacing:0.5px}
+.ornament{text-align:center;padding:10px 0 0;font-size:18px;color:#8b6b3d;letter-spacing:8px}
+.header-colonial{background:#2c1a0e;padding:18px 18px 14px;text-align:center}
+.header-colonial .eyebrow{font-size:9px;letter-spacing:3px;color:#c8a96e;margin-bottom:6px;font-family:'Playfair Display',serif}
+.header-colonial h1{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#f5f0e8;line-height:1.2}
+.header-colonial .sub{font-size:10px;color:#8b6b3d;margin-top:4px;letter-spacing:1px}
+.divider-orn{display:flex;align-items:center;gap:8px;padding:0 18px;margin:14px 0 10px}
+.divider-orn::before,.divider-orn::after{content:'';flex:1;height:0.5px;background:#b89a6a}
+.divider-orn span{font-size:11px;color:#8b6b3d;white-space:nowrap}
+.body-pad{padding:0 16px 16px}
+.place-row{display:flex;align-items:center;gap:12px;padding:11px 13px;border:0.5px solid #c8b89a;border-radius:4px;background:#fdfaf4;margin-bottom:8px}
+.place-icon{width:38px;height:38px;border:0.5px solid #b89a6a;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#f0e8d8}
+.place-icon i{font-size:18px;color:#6b4c2a}
+.place-info{flex:1}
+.place-info .name{font-size:13px;font-weight:600;color:#2c1a0e;font-family:'Playfair Display',serif}
+.place-info .cat{font-size:10px;color:#8b6b3d;letter-spacing:0.5px;margin-top:2px}
+.badge{font-size:9px;letter-spacing:0.5px;padding:3px 8px;border-radius:2px;font-family:'Playfair Display',serif;flex-shrink:0}
+.badge-v{background:#e8ede0;color:#3b5a1f;border:0.5px solid #a0bc70}
+.badge-p{background:#f5f0e8;color:#8b6b3d;border:0.5px solid #c8b89a}
+.progress-block{background:#2c1a0e;border-radius:4px;padding:13px 14px;margin-bottom:12px}
+.progress-block .lbl{font-size:9px;letter-spacing:2px;color:#8b6b3d;margin-bottom:6px}
+.progress-block .nums{display:flex;justify-content:space-between;font-size:12px;color:#f5f0e8;margin-bottom:7px;font-family:'Playfair Display',serif}
+.bar-bg{background:#4a3020;border-radius:1px;height:4px}
+.bar-fill{background:#c8a96e;border-radius:1px;height:4px}
+.bnav{border-top:0.5px solid #c8b89a;display:flex;justify-content:space-around;padding:9px 0 13px;background:#f5f0e8}
+.bni{display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;cursor:pointer}
+.bni i{font-size:20px;color:#b89a6a}
+.bni span{font-size:9px;color:#b89a6a;letter-spacing:0.5px;font-family:'Playfair Display',serif}
+.bni.act i,.bni.act span{color:#2c1a0e}
+
+.scan-area{padding:20px 18px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.scan-hint{font-size:12px;color:#6b4c2a;text-align:center;line-height:1.6;font-family:'Playfair Display',serif}
+.qr-frame{width:200px;height:200px;border:1.5px solid #2c1a0e;border-radius:3px;position:relative;display:flex;align-items:center;justify-content:center;background:#fdfaf4}
+.qr-c{position:absolute;width:16px;height:16px;border-color:#2c1a0e;border-style:solid}
+.qr-c.tl{top:-2px;left:-2px;border-width:3px 0 0 3px}
+.qr-c.tr{top:-2px;right:-2px;border-width:3px 3px 0 0}
+.qr-c.bl{bottom:-2px;left:-2px;border-width:0 0 3px 3px}
+.qr-c.br{bottom:-2px;right:-2px;border-width:0 3px 3px 0}
+.qr-inner{text-align:center}
+.qr-inner i{font-size:48px;color:#c8b89a}
+.qr-inner p{font-size:9px;letter-spacing:1px;color:#b89a6a;margin-top:6px;font-family:'Playfair Display',serif}
+.nfc-row{display:flex;align-items:center;gap:10px;background:#fdfaf4;border:0.5px solid #c8b89a;border-radius:3px;padding:10px 13px;width:100%}
+.nfc-row i{font-size:18px;color:#6b4c2a;flex-shrink:0}
+.nfc-row p{font-size:11px;color:#4a3020;line-height:1.5;font-family:'Playfair Display',serif}
+.scan-line{position:absolute;width:170px;height:1.5px;background:#2c1a0e;opacity:0.4;animation:sc 2.2s infinite ease-in-out}
+@keyframes sc{0%{top:14px}50%{top:182px}100%{top:14px}}
+
+.story-header{background:#2c1a0e;padding:20px 18px 16px}
+.story-header .tag{font-size:9px;letter-spacing:2px;color:#8b6b3d;margin-bottom:8px}
+.story-header h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#f5f0e8;line-height:1.25}
+.story-header .loc{font-size:10px;color:#c8a96e;margin-top:4px;letter-spacing:0.5px}
+.origin-strip{display:flex;gap:10px;align-items:flex-start;background:#e8ede0;border-radius:3px;padding:11px 13px;margin-bottom:13px;border:0.5px solid #a0bc70}
+.origin-strip i{font-size:16px;color:#3b5a1f;flex-shrink:0;margin-top:1px}
+.origin-strip p{font-size:12px;color:#2a3d14;line-height:1.55;font-family:'Playfair Display',serif}
+.story-p{font-size:13px;color:#2c1a0e;line-height:1.75;margin-bottom:12px;font-family:'Playfair Display',serif}
+.fact-box{border-left:2px solid #8b6b3d;padding:10px 13px;background:#fdf7ec;border-radius:0 3px 3px 0;margin-bottom:18px}
+.fact-label{font-size:9px;letter-spacing:2px;color:#8b6b3d;margin-bottom:4px}
+.fact-box p{font-size:12px;color:#2c1a0e;line-height:1.55;font-family:'Playfair Display',serif}
+.btn-seal{background:#2c1a0e;color:#c8a96e;border:none;border-radius:3px;padding:14px;font-size:14px;font-weight:500;font-family:'Playfair Display',serif;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;letter-spacing:0.5px}
+
+.pp-header{background:#2c1a0e;padding:18px 18px 20px}
+.pp-header h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#f5f0e8}
+.pp-header p{font-size:10px;color:#8b6b3d;margin-top:2px;letter-spacing:0.5px}
+.pp-prog{margin-top:14px}
+.pp-row{display:flex;justify-content:space-between;font-size:11px;color:#c8a96e;margin-bottom:6px;font-family:'Playfair Display',serif}
+.stamp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:2px 0;margin-bottom:16px}
+.sc{border:1px dashed #c8b89a;border-radius:3px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:5px;min-height:82px;justify-content:center}
+.sc.done{border-style:solid;border-color:#8b6b3d;background:#fdf7ec}
+.sc.done i{font-size:22px;color:#2c1a0e}
+.sc.done .sn{font-size:9px;color:#6b4c2a;text-align:center;line-height:1.3;font-family:'Playfair Display',serif;letter-spacing:0.3px}
+.sc.empty i{font-size:22px;color:#d8cbb8}
+.sc.empty .sn{font-size:9px;color:#c8b89a;text-align:center;font-family:'Playfair Display',serif}
+.reward-strip{border:0.5px solid #c8b89a;border-radius:3px;padding:13px 14px;display:flex;gap:12px;align-items:center;background:#fdfaf4}
+.reward-ico{width:42px;height:42px;background:#f0e8d8;border:0.5px solid #b89a6a;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.reward-ico i{font-size:20px;color:#6b4c2a}
+.reward-info h3{font-size:13px;font-weight:600;color:#2c1a0e;font-family:'Playfair Display',serif}
+.reward-info p{font-size:11px;color:#8b6b3d;margin-top:2px;line-height:1.4;font-family:'Playfair Display',serif}
+
+.map-body{padding:14px}
+.map-svg-wrap{border:0.5px solid #c8b89a;border-radius:3px;overflow:hidden;background:#fdfaf4}
+.map-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#6b4c2a;font-family:'Playfair Display',serif}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+</style>
+
+<div class="wrap">
+
+<div>
+<div class="screen-label">Pantalla 1 — Inicio</div>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Estacion de la Sabana</span></div>
+  <div class="header-colonial">
+    <div class="eyebrow">Pasaporte Cultural</div>
+    <h1>Estacion de la Sabana</h1>
+    <div class="sub">Bogota, Colombia · Est. 1917</div>
+  </div>
+  <div class="ornament">— * —</div>
+  <div class="body-pad" style="padding-top:14px">
+    <div class="progress-block">
+      <div class="lbl">PROGRESO DEL PASAPORTE</div>
+      <div class="nums"><span>5 de 12 lugares visitados</span><span>42%</span></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:42%"></div></div>
+    </div>
+    <div class="divider-orn"><span>Lugares cercanos</span></div>
+    <div class="place-row">
+      <div class="place-icon"><i class="ti ti-bowl-chopsticks" aria-hidden="true"></i></div>
+      <div class="place-info"><div class="name">Ajiaco Santafereno</div><div class="cat">Plaza Gastronomica · Local 12</div></div>
+      <span class="badge badge-p">Pendiente</span>
+    </div>
+    <div class="place-row">
+      <div class="place-icon"><i class="ti ti-coffee" aria-hidden="true"></i></div>
+      <div class="place-info"><div class="name">Cafe de Chiva</div><div class="cat">Bebidas · Local 4</div></div>
+      <span class="badge badge-v">Visitado</span>
+    </div>
+    <div class="place-row">
+      <div class="place-icon"><i class="ti ti-building-arch" aria-hidden="true"></i></div>
+      <div class="place-info"><div class="name">Salon de Exposicion</div><div class="cat">Cultural · Ala norte</div></div>
+      <span class="badge badge-p">Pendiente</span>
+    </div>
+    <div class="place-row">
+      <div class="place-icon"><i class="ti ti-train" aria-hidden="true"></i></div>
+      <div class="place-info"><div class="name">Vagon Historico No. 3</div><div class="cat">Exposicion ferroviaria</div></div>
+      <span class="badge badge-v">Visitado</span>
+    </div>
+  </div>
+  <div class="bnav">
+    <button class="bni act"><i class="ti ti-home" aria-hidden="true"></i><span>Inicio</span></button>
+    <button class="bni"><i class="ti ti-qrcode" aria-hidden="true"></i><span>Escanear</span></button>
+    <button class="bni"><i class="ti ti-id-badge" aria-hidden="true"></i><span>Pasaporte</span></button>
+    <button class="bni"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Mapa</span></button>
+  </div>
+</div>
+</div>
+
+<div>
+<div class="screen-label">Pantalla 2 — Escanear QR / NFC</div>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Estacion de la Sabana</span></div>
+  <div class="header-colonial" style="padding:14px 18px 12px">
+    <div class="eyebrow">Verificacion de visita</div>
+    <h1 style="font-size:16px">Escanear local</h1>
+  </div>
+  <div class="scan-area">
+    <p class="scan-hint">Apunte la camara al codigo QR del local<br>o acerque el telefono al punto NFC</p>
+    <div class="qr-frame">
+      <div class="qr-c tl"></div><div class="qr-c tr"></div>
+      <div class="qr-c bl"></div><div class="qr-c br"></div>
+      <div class="scan-line"></div>
+      <div class="qr-inner"><i class="ti ti-qrcode" aria-hidden="true"></i><p>Apuntar camara</p></div>
+    </div>
+    <div class="nfc-row">
+      <i class="ti ti-wave-square" aria-hidden="true"></i>
+      <p>NFC disponible: acerque el telefono al punto senalado en cada local para registro automatico</p>
+    </div>
+    <div style="width:100%;border-top:0.5px solid #c8b89a;padding-top:14px">
+      <div style="font-size:9px;letter-spacing:2px;color:#8b6b3d;margin-bottom:8px;font-family:'Playfair Display',serif">O INGRESE EL CODIGO</div>
+      <div style="display:flex;gap:8px">
+        <input type="text" placeholder="Ej: LOC-042" style="flex:1;border:0.5px solid #c8b89a;border-radius:3px;padding:9px 12px;font-size:12px;background:#fdfaf4;font-family:'Playfair Display',serif;color:#2c1a0e">
+        <button style="background:#2c1a0e;color:#c8a96e;border:none;border-radius:3px;padding:9px 16px;font-size:12px;font-family:'Playfair Display',serif;cursor:pointer">Ir</button>
+      </div>
+    </div>
+  </div>
+  <div class="bnav">
+    <button class="bni"><i class="ti ti-home" aria-hidden="true"></i><span>Inicio</span></button>
+    <button class="bni act"><i class="ti ti-qrcode" aria-hidden="true"></i><span>Escanear</span></button>
+    <button class="bni"><i class="ti ti-id-badge" aria-hidden="true"></i><span>Pasaporte</span></button>
+    <button class="bni"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Mapa</span></button>
+  </div>
+</div>
+</div>
+
+<div>
+<div class="screen-label">Pantalla 3 — Historia del lugar</div>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Local 12</span></div>
+  <div class="story-header">
+    <div class="tag">PLAZA GASTRONOMICA · LOCAL 12</div>
+    <h2>Ajiaco Santafereno</h2>
+    <div class="loc">Receta ancestral del altiplano cundiboyacense</div>
+  </div>
+  <div class="body-pad" style="padding-top:14px">
+    <div class="origin-strip">
+      <i class="ti ti-map-pin" aria-hidden="true"></i>
+      <p>Origen: Bogota, Cundinamarca. Plato representativo de la cocina sabanera, preparado desde tiempos de la Colonia en las casas de la ciudad.</p>
+    </div>
+    <p class="story-p">El ajiaco es el plato mas emblematico de Bogota. Su base es la papa criolla, la papa pastusa y la papa nevada, junto con el pollo y la guasca, hierba que le da su sabor inconfundible.</p>
+    <p class="story-p">En las cocinas de la Estacion de la Sabana se servia a viajeros que llegaban de todas las regiones del pais en los trenes del Ferrocarril de la Sabana, trayendo consigo sus propias versiones de este caldo.</p>
+    <div class="fact-box">
+      <div class="fact-label">DATO HISTORICO</div>
+      <p>La guasca, ingrediente fundamental del ajiaco, fue usada por los muiscas mucho antes de la llegada espanola. Su nombre proviene del quechua y significa hierba o planta.</p>
+    </div>
+    <button class="btn-seal"><i class="ti ti-stamp" aria-hidden="true"></i> Sellar el pasaporte</button>
+  </div>
+  <div class="bnav">
+    <button class="bni"><i class="ti ti-home" aria-hidden="true"></i><span>Inicio</span></button>
+    <button class="bni act"><i class="ti ti-qrcode" aria-hidden="true"></i><span>Escanear</span></button>
+    <button class="bni"><i class="ti ti-id-badge" aria-hidden="true"></i><span>Pasaporte</span></button>
+    <button class="bni"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Mapa</span></button>
+  </div>
+</div>
+</div>
+
+<div>
+<div class="screen-label">Pantalla 4 — Mi pasaporte</div>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Estacion de la Sabana</span></div>
+  <div class="pp-header">
+    <h2>Mi Pasaporte Cultural</h2>
+    <p>Estacion de la Sabana · Bogota</p>
+    <div class="pp-prog">
+      <div class="pp-row"><span>5 de 12 sellos obtenidos</span><span>42 %</span></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:42%"></div></div>
+    </div>
+  </div>
+  <div class="body-pad" style="padding-top:14px">
+    <div class="divider-orn" style="margin:0 0 12px"><span>Sellos coleccionados</span></div>
+    <div class="stamp-grid">
+      <div class="sc done"><i class="ti ti-coffee" aria-hidden="true"></i><span class="sn">Cafe de Chiva</span></div>
+      <div class="sc done"><i class="ti ti-train" aria-hidden="true"></i><span class="sn">Vagon No. 3</span></div>
+      <div class="sc done"><i class="ti ti-music" aria-hidden="true"></i><span class="sn">Patio Musical</span></div>
+      <div class="sc done"><i class="ti ti-soup" aria-hidden="true"></i><span class="sn">La Olla Grande</span></div>
+      <div class="sc done"><i class="ti ti-photo" aria-hidden="true"></i><span class="sn">Galeria Norte</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+      <div class="sc empty"><i class="ti ti-lock" aria-hidden="true"></i><span class="sn">Por descubrir</span></div>
+    </div>
+    <div class="divider-orn" style="margin:0 0 12px"><span>Recompensa</span></div>
+    <div class="reward-strip">
+      <div class="reward-ico"><i class="ti ti-ticket" aria-hidden="true"></i></div>
+      <div class="reward-info">
+        <h3>5 % de descuento</h3>
+        <p>Complete los 12 sellos para desbloquear en el comercio de su eleccion</p>
+      </div>
+      <i class="ti ti-lock" style="font-size:18px;color:#c8b89a;flex-shrink:0" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="bnav">
+    <button class="bni"><i class="ti ti-home" aria-hidden="true"></i><span>Inicio</span></button>
+    <button class="bni"><i class="ti ti-qrcode" aria-hidden="true"></i><span>Escanear</span></button>
+    <button class="bni act"><i class="ti ti-id-badge" aria-hidden="true"></i><span>Pasaporte</span></button>
+    <button class="bni"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Mapa</span></button>
+  </div>
+</div>
+</div>
+
+<div>
+<div class="screen-label">Pantalla 5 — Mapa del recinto</div>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Planta — Estacion de la Sabana</span></div>
+  <div class="header-colonial" style="padding:12px 18px 10px">
+    <div class="eyebrow">Planta primer piso</div>
+    <h1 style="font-size:15px">Recinto ferroviario</h1>
+  </div>
+  <div class="map-body">
+    <div class="map-svg-wrap">
+      <svg viewBox="0 0 308 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+        <rect width="308" height="310" fill="#fdfaf4"/>
+        <rect x="6" y="6" width="296" height="298" rx="2" fill="none" stroke="#c8b89a" stroke-width="0.5"/>
+
+        <!-- Edificio 1 gran cuerpo central -->
+        <rect x="14" y="14" width="192" height="180" rx="1" fill="#f0e8d8" stroke="#b89a6a" stroke-width="0.8"/>
+        <!-- Edificio 2A arriba derecha -->
+        <rect x="214" y="14" width="82" height="82" rx="1" fill="#e8e0cc" stroke="#b89a6a" stroke-width="0.8"/>
+        <!-- Cuerpo inferior -->
+        <rect x="14" y="202" width="192" height="90" rx="1" fill="#f0e8d8" stroke="#b89a6a" stroke-width="0.8"/>
+
+        <!-- Zona Plaza Gastronomica - verde suave -->
+        <rect x="20" y="20" width="88" height="168" rx="1" fill="#d8e8c8" fill-opacity="0.6" stroke="#a0bc70" stroke-width="0.8"/>
+        <text x="64" y="88" text-anchor="middle" font-size="8" fill="#3b5a1f" font-family="'Playfair Display',serif" font-weight="600">Plaza</text>
+        <text x="64" y="99" text-anchor="middle" font-size="8" fill="#3b5a1f" font-family="'Playfair Display',serif">Gastronomica</text>
+
+        <!-- Zona Mercado Local - amber suave -->
+        <rect x="116" y="20" width="84" height="80" rx="1" fill="#f0e0b8" fill-opacity="0.7" stroke="#c8a060" stroke-width="0.8"/>
+        <text x="158" y="58" text-anchor="middle" font-size="8" fill="#6b3c0e" font-family="'Playfair Display',serif" font-weight="600">Mercado</text>
+        <text x="158" y="69" text-anchor="middle" font-size="8" fill="#6b3c0e" font-family="'Playfair Display',serif">Local</text>
+
+        <!-- Zona Cultural - rosa colonial -->
+        <rect x="116" y="108" width="84" height="80" rx="1" fill="#e8d8d0" fill-opacity="0.7" stroke="#c09080" stroke-width="0.8"/>
+        <text x="158" y="145" text-anchor="middle" font-size="8" fill="#5a2a1a" font-family="'Playfair Display',serif" font-weight="600">Espacios</text>
+        <text x="158" y="156" text-anchor="middle" font-size="8" fill="#5a2a1a" font-family="'Playfair Display',serif">Culturales</text>
+
+        <!-- Edificio 2A = Exposicion ferroviaria -->
+        <rect x="216" y="16" width="78" height="78" rx="1" fill="#ddd8f0" fill-opacity="0.7" stroke="#8878c0" stroke-width="0.8"/>
+        <text x="255" y="52" text-anchor="middle" font-size="8" fill="#2c1a5a" font-family="'Playfair Display',serif" font-weight="600">Exposicion</text>
+        <text x="255" y="63" text-anchor="middle" font-size="8" fill="#2c1a5a" font-family="'Playfair Display',serif">Ferroviaria</text>
+
+        <!-- Zona eventos inferior -->
+        <rect x="20" y="208" width="180" height="78" rx="1" fill="#f8f0d8" fill-opacity="0.6" stroke="#b89a6a" stroke-width="0.8"/>
+        <text x="110" y="244" text-anchor="middle" font-size="8" fill="#4a3010" font-family="'Playfair Display',serif" font-weight="600">Zona de Eventos y Plaza Publica</text>
+
+        <!-- Puntos QR/NFC -->
+        <circle cx="64" cy="130" r="5" fill="#2c1a0e" stroke="#f5f0e8" stroke-width="1"/>
+        <text x="64" y="133" text-anchor="middle" font-size="5.5" fill="#c8a96e" font-family="'Playfair Display',serif">QR</text>
+
+        <circle cx="158" cy="40" r="5" fill="#2c1a0e" stroke="#f5f0e8" stroke-width="1"/>
+        <text x="158" y="43" text-anchor="middle" font-size="5.5" fill="#c8a96e" font-family="'Playfair Display',serif">QR</text>
+
+        <circle cx="158" cy="125" r="5" fill="#2c1a0e" stroke="#f5f0e8" stroke-width="1"/>
+        <text x="158" y="128" text-anchor="middle" font-size="5" fill="#c8a96e" font-family="'Playfair Display',serif">NFC</text>
+
+        <circle cx="255" cy="40" r="5" fill="#2c1a0e" stroke="#f5f0e8" stroke-width="1"/>
+        <text x="255" y="43" text-anchor="middle" font-size="5" fill="#c8a96e" font-family="'Playfair Display',serif">NFC</text>
+
+        <circle cx="110" cy="248" r="5" fill="#2c1a0e" stroke="#f5f0e8" stroke-width="1"/>
+        <text x="110" y="251" text-anchor="middle" font-size="5.5" fill="#c8a96e" font-family="'Playfair Display',serif">QR</text>
+
+        <!-- Linea ferroviaria decorativa -->
+        <line x1="216" y1="104" x2="216" y2="298" stroke="#b89a6a" stroke-width="0.5" stroke-dasharray="4,3"/>
+        <text x="260" y="200" text-anchor="middle" font-size="7.5" fill="#8b6b3d" font-family="'Playfair Display',serif" transform="rotate(-90,260,200)">Via ferrea</text>
+
+        <!-- Escala -->
+        <line x1="20" y1="300" x2="70" y2="300" stroke="#b89a6a" stroke-width="1"/>
+        <line x1="20" y1="297" x2="20" y2="303" stroke="#b89a6a" stroke-width="1"/>
+        <line x1="70" y1="297" x2="70" y2="303" stroke="#b89a6a" stroke-width="1"/>
+        <text x="45" y="308" text-anchor="middle" font-size="7" fill="#8b6b3d" font-family="'Playfair Display',serif">10 m</text>
+
+        <!-- Label edificios -->
+        <text x="168" y="290" text-anchor="middle" font-size="6.5" fill="#b89a6a" font-family="'Playfair Display',serif">Edificio 1 — Planta primer piso</text>
+        <text x="255" y="100" text-anchor="middle" font-size="6.5" fill="#b89a6a" font-family="'Playfair Display',serif">Edif. 2A</text>
+      </svg>
+    </div>
+    <div class="map-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#a0bc70"></div>Plaza Gastronomica</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#c8a060"></div>Mercado Local</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#c09080"></div>Cultural</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#8878c0"></div>Ferroviario</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#2c1a0e"></div>Puntos QR / NFC</div>
+    </div>
+  </div>
+  <div class="bnav">
+    <button class="bni"><i class="ti ti-home" aria-hidden="true"></i><span>Inicio</span></button>
+    <button class="bni"><i class="ti ti-qrcode" aria-hidden="true"></i><span>Escanear</span></button>
+    <button class="bni"><i class="ti ti-id-badge" aria-hidden="true"></i><span>Pasaporte</span></button>
+    <button class="bni act"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Mapa</span></button>
+  </div>
+</div>
+</div>
+
+</div>
